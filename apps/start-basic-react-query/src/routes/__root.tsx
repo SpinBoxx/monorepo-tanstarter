@@ -12,8 +12,6 @@ import { NotFound } from "@/components/NotFound";
 import appCss from "@/styles/app.css?url";
 import { seo } from "@/utils/seo";
 
-
-
 export const Route = createRootRoute({
 	head: () => ({
 		meta: [
