@@ -6,8 +6,15 @@
 		"module": "ESNext",
 		"moduleResolution": "Bundler",
 		"noEmit": true,
+		"experimentalDecorators": true,
 		"paths": {
-			"@/*": ["./src/*"]
+			"@/*": ["./src/*"],
+			"#controllers/*": ["../api/app/controllers/*"],
+			"#models/*": ["../api/app/models/*"],
+			"#transformers/*": ["../api/app/transformers/*"],
+			"#validators/*": ["../api/app/validators/*"],
+			"#database/*": ["../api/database/*"],
+			"#types/*": ["../api/types/*"]
 		},
 		"target": "ES2024"
 	},

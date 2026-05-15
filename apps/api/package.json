@@ -1,0 +1,79 @@
+{
+  "name": "api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    "./data": "./.adonisjs/client/data.d.ts",
+    "./registry": "./.adonisjs/client/registry/index.ts",
+    "./registry/tree": "./.adonisjs/client/registry/tree.d.ts",
+    "./types": "./types/index.ts"
+  },
+  "scripts": {
+    "start": "node bin/server.js",
+    "build": "node ace build",
+    "dev": "node ace serve --hmr",
+    "test": "node ace test",
+    "lint": "biome check --write",
+    "format": "biome format --write",
+    "check-types": "tsc --noEmit",
+    "typecheck": "tsc --noEmit"
+  },
+  "imports": {
+    "#controllers/*": "./app/controllers/*.js",
+    "#exceptions/*": "./app/exceptions/*.js",
+    "#models/*": "./app/models/*.js",
+    "#mails/*": "./app/mails/*.js",
+    "#services/*": "./app/services/*.js",
+    "#listeners/*": "./app/listeners/*.js",
+    "#events/*": "./app/events/*.js",
+    "#generated/*": "./.adonisjs/server/*.js",
+    "#middleware/*": "./app/middleware/*.js",
+    "#transformers/*": "./app/transformers/*.js",
+    "#validators/*": "./app/validators/*.js",
+    "#providers/*": "./providers/*.js",
+    "#policies/*": "./app/policies/*.js",
+    "#abilities/*": "./app/abilities/*.js",
+    "#database/*": "./database/*.js",
+    "#tests/*": "./tests/*.js",
+    "#start/*": "./start/*.js",
+    "#types/*": "./types/*.js",
+    "#config/*": "./config/*.js"
+  },
+  "devDependencies": {
+    "@adonisjs/assembler": "catalog:",
+    "@japa/assert": "catalog:",
+    "@japa/plugin-adonisjs": "catalog:",
+    "@japa/runner": "catalog:",
+    "@poppinss/ts-exec": "catalog:",
+    "@repo/biome-config": "workspace:^",
+    "@repo/typescript-config": "workspace:*",
+    "@types/luxon": "catalog:",
+    "@types/node": "catalog:",
+    "hot-hook": "catalog:",
+    "pino-pretty": "catalog:",
+    "typescript": "catalog:",
+    "youch": "catalog:"
+  },
+  "dependencies": {
+    "@adonisjs/auth": "catalog:",
+    "@adonisjs/core": "catalog:",
+    "@adonisjs/cors": "catalog:",
+    "@adonisjs/lucid": "catalog:",
+    "@adonisjs/session": "catalog:",
+    "@adonisjs/shield": "catalog:",
+    "@japa/api-client": "catalog:",
+    "@tuyau/core": "catalog:",
+    "@vinejs/vine": "catalog:",
+    "better-sqlite3": "catalog:",
+    "luxon": "catalog:",
+    "reflect-metadata": "catalog:"
+  },
+  "hotHook": {
+    "boundaries": [
+      "./app/controllers/**/*.ts",
+      "./app/middleware/*.ts"
+    ]
+  }
+}

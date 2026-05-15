@@ -1,0 +1,35 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.4.15/schema.json",
+  "root": false,
+  "extends": ["@repo/biome-config/base"],
+  "files": {
+    "includes": [
+      "**",
+      "!.adonisjs",
+      "!build",
+      "!coverage",
+      "!node_modules",
+      "!public/assets",
+      "!tmp"
+    ]
+  },
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single"
+    }
+  },
+  "linter": {
+    "rules": {
+      "style": {
+        "useImportType": "error"
+      },
+      "suspicious": {
+        "noConsole": "warn"
+      }
+    }
+  }
+}
