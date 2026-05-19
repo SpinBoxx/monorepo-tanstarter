@@ -6,10 +6,20 @@ import { withAuthFinder } from '@adonisjs/auth/mixins/lucid';
 import { compose } from '@adonisjs/core/helpers';
 import hash from '@adonisjs/core/services/hash';
 import { UserSchema } from '#database/schema';
+import { USER_ROLES, type UserRoleValue } from '../types/role.ts';
 
 export default class User extends compose(UserSchema, withAuthFinder(hash)) {
   static accessTokens = DbAccessTokensProvider.forModel(User);
   declare currentAccessToken?: AccessToken;
+  declare role: UserRoleValue;
+
+  hasRole(role: UserRoleValue) {
+    return this.role === role;
+  }
+
+  get isAdmin() {
+    return this.hasRole(USER_ROLES.ADMIN);
+  }
 
   get initials() {
     const [first, last] = this.fullName

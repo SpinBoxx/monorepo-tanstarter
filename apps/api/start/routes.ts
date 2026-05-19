@@ -10,6 +10,7 @@
 import router from '@adonisjs/core/services/router';
 import { controllers } from '#generated/controllers';
 import { middleware } from '#start/kernel';
+import { authRoutes } from '../app/routes/auth/auth.routes.js';
 
 router.get('/', () => {
   return { hello: 'world' };
@@ -17,18 +18,12 @@ router.get('/', () => {
 
 router
   .group(() => {
+    authRoutes();
     router
       .group(() => {
-        router.post('signup', [controllers.NewAccount, 'store']);
-        router.post('login', [controllers.AccessTokens, 'store']);
-      })
-      .prefix('auth')
-      .as('auth');
-
-    router
-      .group(() => {
-        router.get('profile', [controllers.Profile, 'show']);
-        router.post('logout', [controllers.AccessTokens, 'destroy']);
+        router.get('profile', [controllers.user.Profile, 'show']);
+        router.post('logout', [controllers.auth.AccessTokens, 'destroy']);
+        router.post('update', [controllers.user.Profile, 'update']);
       })
       .prefix('account')
       .as('profile')

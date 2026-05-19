@@ -9,10 +9,12 @@ export interface ApiDefinition {
     accessTokens: {
       store: typeof routes['auth.access_tokens.store']
     }
+    admin: typeof routes['auth.admin']
   }
   profile: {
     profile: {
       show: typeof routes['profile.profile.show']
+      update: typeof routes['profile.profile.update']
     }
     accessTokens: {
       destroy: typeof routes['profile.access_tokens.destroy']

@@ -18,6 +18,12 @@ const routes = {
     tokens: [{"old":"/api/v1/auth/login","type":0,"val":"api","end":""},{"old":"/api/v1/auth/login","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/login","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/login","type":0,"val":"login","end":""}],
     types: placeholder as Registry['auth.access_tokens.store']['types'],
   },
+  'auth.admin': {
+    methods: ["GET","HEAD"],
+    pattern: '/api/v1/auth/admin',
+    tokens: [{"old":"/api/v1/auth/admin","type":0,"val":"api","end":""},{"old":"/api/v1/auth/admin","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/admin","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/admin","type":0,"val":"admin","end":""}],
+    types: placeholder as Registry['auth.admin']['types'],
+  },
   'profile.profile.show': {
     methods: ["GET","HEAD"],
     pattern: '/api/v1/account/profile',
@@ -29,6 +35,12 @@ const routes = {
     pattern: '/api/v1/account/logout',
     tokens: [{"old":"/api/v1/account/logout","type":0,"val":"api","end":""},{"old":"/api/v1/account/logout","type":0,"val":"v1","end":""},{"old":"/api/v1/account/logout","type":0,"val":"account","end":""},{"old":"/api/v1/account/logout","type":0,"val":"logout","end":""}],
     types: placeholder as Registry['profile.access_tokens.destroy']['types'],
+  },
+  'profile.profile.update': {
+    methods: ["POST"],
+    pattern: '/api/v1/account/update',
+    tokens: [{"old":"/api/v1/account/update","type":0,"val":"api","end":""},{"old":"/api/v1/account/update","type":0,"val":"v1","end":""},{"old":"/api/v1/account/update","type":0,"val":"account","end":""},{"old":"/api/v1/account/update","type":0,"val":"update","end":""}],
+    types: placeholder as Registry['profile.profile.update']['types'],
   },
 } as const satisfies Record<string, AdonisEndpoint>
 

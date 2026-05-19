@@ -1,7 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http';
 import User from '#models/user';
-import UserTransformer from '#transformers/user_transformer';
-import { signupValidator } from '#validators/user';
+import UserTransformer from '#transformers/user-transformer';
+import { signupValidator } from '#validators/auth/signup.validator';
 
 export default class NewAccountController {
   async store({ request, serialize }: HttpContext) {
