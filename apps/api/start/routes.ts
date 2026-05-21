@@ -8,9 +8,8 @@
 */
 
 import router from '@adonisjs/core/services/router';
-import { controllers } from '#generated/controllers';
-import { middleware } from '#start/kernel';
 import { authRoutes } from '../app/routes/auth/auth.routes.js';
+import { userRoutes } from '../app/routes/user/user.routes.ts';
 
 router.get('/', () => {
   return { hello: 'world' };
@@ -19,14 +18,6 @@ router.get('/', () => {
 router
   .group(() => {
     authRoutes();
-    router
-      .group(() => {
-        router.get('profile', [controllers.user.Profile, 'show']);
-        router.post('logout', [controllers.auth.AccessTokens, 'destroy']);
-        router.post('update', [controllers.user.Profile, 'update']);
-      })
-      .prefix('account')
-      .as('profile')
-      .use(middleware.auth());
+    userRoutes();
   })
   .prefix('/api/v1');

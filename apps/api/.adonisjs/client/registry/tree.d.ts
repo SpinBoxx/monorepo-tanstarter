@@ -3,21 +3,21 @@ import type { routes } from './index.ts'
 
 export interface ApiDefinition {
   auth: {
-    newAccount: {
-      store: typeof routes['auth.new_account.store']
-    }
-    accessTokens: {
-      store: typeof routes['auth.access_tokens.store']
+    signup: typeof routes['auth.signup']
+    login: typeof routes['auth.login']
+    email: {
+      verify: typeof routes['auth.email.verify']
+      verification: {
+        resend: typeof routes['auth.email.verification.resend']
+      }
     }
     admin: typeof routes['auth.admin']
   }
   profile: {
-    profile: {
-      show: typeof routes['profile.profile.show']
-      update: typeof routes['profile.profile.update']
-    }
-    accessTokens: {
-      destroy: typeof routes['profile.access_tokens.destroy']
-    }
+    show: typeof routes['profile.show']
+    logout: typeof routes['profile.logout']
+    update: typeof routes['profile.update']
+    list: typeof routes['profile.list']
+    delete: typeof routes['profile.delete']
   }
 }

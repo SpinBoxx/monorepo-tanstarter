@@ -4,26 +4,37 @@ type ParamValue = string | number | bigint | boolean
 
 export type ScannedRoutes = {
   ALL: {
-    'auth.new_account.store': { paramsTuple?: []; params?: {} }
-    'auth.access_tokens.store': { paramsTuple?: []; params?: {} }
+    'auth.signup': { paramsTuple?: []; params?: {} }
+    'auth.login': { paramsTuple?: []; params?: {} }
+    'auth.email.verify': { paramsTuple?: []; params?: {} }
+    'auth.email.verification.resend': { paramsTuple?: []; params?: {} }
     'auth.admin': { paramsTuple?: []; params?: {} }
-    'profile.profile.show': { paramsTuple?: []; params?: {} }
-    'profile.access_tokens.destroy': { paramsTuple?: []; params?: {} }
-    'profile.profile.update': { paramsTuple?: []; params?: {} }
+    'profile.show': { paramsTuple?: []; params?: {} }
+    'profile.logout': { paramsTuple?: []; params?: {} }
+    'profile.update': { paramsTuple?: []; params?: {} }
+    'profile.list': { paramsTuple?: []; params?: {} }
+    'profile.delete': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   GET: {
     'auth.admin': { paramsTuple?: []; params?: {} }
-    'profile.profile.show': { paramsTuple?: []; params?: {} }
+    'profile.show': { paramsTuple?: []; params?: {} }
+    'profile.list': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'auth.admin': { paramsTuple?: []; params?: {} }
-    'profile.profile.show': { paramsTuple?: []; params?: {} }
+    'profile.show': { paramsTuple?: []; params?: {} }
+    'profile.list': { paramsTuple?: []; params?: {} }
   }
   POST: {
-    'auth.new_account.store': { paramsTuple?: []; params?: {} }
-    'auth.access_tokens.store': { paramsTuple?: []; params?: {} }
-    'profile.access_tokens.destroy': { paramsTuple?: []; params?: {} }
-    'profile.profile.update': { paramsTuple?: []; params?: {} }
+    'auth.signup': { paramsTuple?: []; params?: {} }
+    'auth.login': { paramsTuple?: []; params?: {} }
+    'auth.email.verify': { paramsTuple?: []; params?: {} }
+    'auth.email.verification.resend': { paramsTuple?: []; params?: {} }
+    'profile.logout': { paramsTuple?: []; params?: {} }
+    'profile.update': { paramsTuple?: []; params?: {} }
+  }
+  DELETE: {
+    'profile.delete': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

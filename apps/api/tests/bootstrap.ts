@@ -9,6 +9,8 @@ import { pluginAdonisJS } from '@japa/plugin-adonisjs';
 import type { Config } from '@japa/runner/types';
 import type { Registry } from '../.adonisjs/client/registry/schema.d.ts';
 
+process.env.PORT = process.env.TEST_PORT ?? '4333';
+
 /**
  * This file is imported by the "bin/test.ts" entrypoint file
  */
@@ -41,7 +43,7 @@ export const plugins: Config['plugins'] = [
  * The teardown functions are executed after all the tests
  */
 export const runnerHooks: Required<Pick<Config, 'setup' | 'teardown'>> = {
-  setup: [],
+  setup: [() => testUtils.db().migrate()],
   teardown: [],
 };
 

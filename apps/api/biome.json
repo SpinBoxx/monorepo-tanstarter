@@ -26,9 +26,6 @@
     "rules": {
       "style": {
         "useImportType": "error"
-      },
-      "suspicious": {
-        "noConsole": "warn"
       }
     }
   }

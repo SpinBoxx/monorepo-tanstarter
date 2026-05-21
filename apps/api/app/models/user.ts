@@ -5,13 +5,38 @@ import {
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid';
 import { compose } from '@adonisjs/core/helpers';
 import hash from '@adonisjs/core/services/hash';
+import { hasMany } from '@adonisjs/lucid/orm';
+import type { HasMany } from '@adonisjs/lucid/types/relations';
+import type { DateTime } from 'luxon';
 import { UserSchema } from '#database/schema';
+import { TOKEN_TYPES } from '#types/token';
 import { USER_ROLES, type UserRoleValue } from '../types/role.ts';
+import Token from './token.ts';
 
 export default class User extends compose(UserSchema, withAuthFinder(hash)) {
   static accessTokens = DbAccessTokensProvider.forModel(User);
   declare currentAccessToken?: AccessToken;
   declare role: UserRoleValue;
+  declare emailVerifiedAt: DateTime | null;
+
+  @hasMany(() => Token)
+  declare tokens: HasMany<typeof Token>;
+
+  /**
+   * Narrows the generic tokens relation to password reset tokens only.
+   */
+  @hasMany(() => Token, {
+    onQuery: (query) => query.where('type', TOKEN_TYPES.PASSWORD_RESET),
+  })
+  declare passwordResetTokens: HasMany<typeof Token>;
+
+  /**
+   * Narrows the generic tokens relation to email verification tokens only.
+   */
+  @hasMany(() => Token, {
+    onQuery: (query) => query.where('type', TOKEN_TYPES.VERIFY_EMAIL),
+  })
+  declare verifyEmailTokens: HasMany<typeof Token>;
 
   hasRole(role: UserRoleValue) {
     return this.role === role;
@@ -19,6 +44,10 @@ export default class User extends compose(UserSchema, withAuthFinder(hash)) {
 
   get isAdmin() {
     return this.hasRole(USER_ROLES.ADMIN);
+  }
+
+  get emailVerified() {
+    return !!this.emailVerifiedAt;
   }
 
   get initials() {

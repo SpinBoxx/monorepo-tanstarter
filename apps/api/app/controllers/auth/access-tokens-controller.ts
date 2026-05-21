@@ -4,10 +4,16 @@ import UserTransformer from '#transformers/user-transformer';
 import { loginValidator } from '#validators/auth/login.validator';
 
 export default class AccessTokensController {
-  async store({ request, serialize }: HttpContext) {
+  async store({ request, response, serialize }: HttpContext) {
     const { email, password } = await request.validateUsing(loginValidator);
 
     const user = await User.verifyCredentials(email, password);
+    if (!user.emailVerifiedAt) {
+      return response.forbidden({
+        message: 'Email address must be verified before login',
+      });
+    }
+
     const token = await User.accessTokens.create(user);
 
     return serialize({

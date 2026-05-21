@@ -62,6 +62,7 @@
     "@adonisjs/core": "catalog:",
     "@adonisjs/cors": "catalog:",
     "@adonisjs/lucid": "catalog:",
+    "@adonisjs/mail": "catalog:",
     "@adonisjs/session": "catalog:",
     "@adonisjs/shield": "catalog:",
     "@japa/api-client": "catalog:",
