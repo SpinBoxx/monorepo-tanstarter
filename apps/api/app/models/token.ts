@@ -31,6 +31,10 @@ export default class Token extends TokenSchema {
   @belongsTo(() => User)
   declare user: BelongsTo<typeof User>;
 
+  /**
+   * Creates a fresh email verification token for the user.
+   * Any previous active email verification tokens are expired first.
+   */
   public static async generateVerifyEmailToken(user: User) {
     const token = string.generateRandom(64);
 
@@ -44,6 +48,11 @@ export default class Token extends TokenSchema {
     return record.token;
   }
 
+  /**
+   * Creates a fresh password reset token for the user.
+   * When the user is null, returns a random token without persisting anything
+   * so the forgot password flow can stay neutral for unknown emails.
+   */
   public static async generatePasswordResetToken(user: User | null) {
     const token = string.generateRandom(64);
 
@@ -59,6 +68,9 @@ export default class Token extends TokenSchema {
     return record.token;
   }
 
+  /**
+   * Marks all tokens of a given type as expired for a user.
+   */
   public static async expireTokens(
     user: User,
     type: TokenType,
@@ -68,6 +80,10 @@ export default class Token extends TokenSchema {
     });
   }
 
+  /**
+   * Returns the user attached to a valid token, or undefined when the token
+   * does not exist, has the wrong type, or is expired.
+   */
   public static async getTokenUser(token: string, type: TokenType) {
     const record = await Token.query()
       .preload('user')
@@ -80,6 +96,9 @@ export default class Token extends TokenSchema {
     return record?.user;
   }
 
+  /**
+   * Checks whether a token exists, matches the expected type, and is not expired.
+   */
   public static async verify(token: string, type: TokenType) {
     const record = await Token.query()
       .where('expiresAt', '>', DateTime.now().toSQL())
@@ -90,6 +109,9 @@ export default class Token extends TokenSchema {
     return !!record;
   }
 
+  /**
+   * Finds the latest valid token record with its user preloaded.
+   */
   public static async findValid(token: string, type: TokenType) {
     return Token.query()
       .preload('user')

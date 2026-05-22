@@ -55,6 +55,30 @@ export interface Registry {
       errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/email-verification-controller').default['resend']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
+  'auth.password.forgot': {
+    methods: ["POST"]
+    pattern: '/api/v1/auth/password/forgot'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/auth/reset-password.validator').forgotPasswordValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/auth/reset-password.validator').forgotPasswordValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth/password-reset-controller').default['request']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/password-reset-controller').default['request']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'auth.password.reset': {
+    methods: ["POST"]
+    pattern: '/api/v1/auth/password/reset'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/auth/reset-password.validator').resetPasswordValidator)>>
+      paramsTuple: []
+      params: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/auth/reset-password.validator').resetPasswordValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/auth/password-reset-controller').default['reset']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/auth/password-reset-controller').default['reset']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
   'auth.admin': {
     methods: ["GET","HEAD"]
     pattern: '/api/v1/auth/admin'

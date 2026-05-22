@@ -21,6 +21,12 @@ export function authRoutes() {
         ])
         .as('email.verification.resend');
       router
+        .post('password/forgot', [controllers.auth.PasswordReset, 'request'])
+        .as('password.forgot');
+      router
+        .post('password/reset', [controllers.auth.PasswordReset, 'reset'])
+        .as('password.reset');
+      router
         .get('admin', () => {
           return { message: 'Welcome, admin!' };
         })

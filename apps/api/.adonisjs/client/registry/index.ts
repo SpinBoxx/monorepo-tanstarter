@@ -30,6 +30,18 @@ const routes = {
     tokens: [{"old":"/api/v1/auth/email/verification/resend","type":0,"val":"api","end":""},{"old":"/api/v1/auth/email/verification/resend","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/email/verification/resend","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/email/verification/resend","type":0,"val":"email","end":""},{"old":"/api/v1/auth/email/verification/resend","type":0,"val":"verification","end":""},{"old":"/api/v1/auth/email/verification/resend","type":0,"val":"resend","end":""}],
     types: placeholder as Registry['auth.email.verification.resend']['types'],
   },
+  'auth.password.forgot': {
+    methods: ["POST"],
+    pattern: '/api/v1/auth/password/forgot',
+    tokens: [{"old":"/api/v1/auth/password/forgot","type":0,"val":"api","end":""},{"old":"/api/v1/auth/password/forgot","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/password/forgot","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/password/forgot","type":0,"val":"password","end":""},{"old":"/api/v1/auth/password/forgot","type":0,"val":"forgot","end":""}],
+    types: placeholder as Registry['auth.password.forgot']['types'],
+  },
+  'auth.password.reset': {
+    methods: ["POST"],
+    pattern: '/api/v1/auth/password/reset',
+    tokens: [{"old":"/api/v1/auth/password/reset","type":0,"val":"api","end":""},{"old":"/api/v1/auth/password/reset","type":0,"val":"v1","end":""},{"old":"/api/v1/auth/password/reset","type":0,"val":"auth","end":""},{"old":"/api/v1/auth/password/reset","type":0,"val":"password","end":""},{"old":"/api/v1/auth/password/reset","type":0,"val":"reset","end":""}],
+    types: placeholder as Registry['auth.password.reset']['types'],
+  },
   'auth.admin': {
     methods: ["GET","HEAD"],
     pattern: '/api/v1/auth/admin',

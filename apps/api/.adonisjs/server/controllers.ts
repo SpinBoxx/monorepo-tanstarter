@@ -8,6 +8,7 @@ export const controllers = {
     AccessTokens: () => import('#controllers/auth/access-tokens-controller'),
     EmailVerification: () => import('#controllers/auth/email-verification-controller'),
     NewAccount: () => import('#controllers/auth/new-account-controller'),
+    PasswordReset: () => import('#controllers/auth/password-reset-controller'),
   },
   user: {
     User: () => import('#controllers/user/user-controller'),

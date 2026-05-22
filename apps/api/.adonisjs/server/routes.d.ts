@@ -8,6 +8,8 @@ export type ScannedRoutes = {
     'auth.login': { paramsTuple?: []; params?: {} }
     'auth.email.verify': { paramsTuple?: []; params?: {} }
     'auth.email.verification.resend': { paramsTuple?: []; params?: {} }
+    'auth.password.forgot': { paramsTuple?: []; params?: {} }
+    'auth.password.reset': { paramsTuple?: []; params?: {} }
     'auth.admin': { paramsTuple?: []; params?: {} }
     'profile.show': { paramsTuple?: []; params?: {} }
     'profile.logout': { paramsTuple?: []; params?: {} }
@@ -30,6 +32,8 @@ export type ScannedRoutes = {
     'auth.login': { paramsTuple?: []; params?: {} }
     'auth.email.verify': { paramsTuple?: []; params?: {} }
     'auth.email.verification.resend': { paramsTuple?: []; params?: {} }
+    'auth.password.forgot': { paramsTuple?: []; params?: {} }
+    'auth.password.reset': { paramsTuple?: []; params?: {} }
     'profile.logout': { paramsTuple?: []; params?: {} }
     'profile.update': { paramsTuple?: []; params?: {} }
   }

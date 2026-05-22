@@ -11,6 +11,10 @@ export interface ApiDefinition {
         resend: typeof routes['auth.email.verification.resend']
       }
     }
+    password: {
+      forgot: typeof routes['auth.password.forgot']
+      reset: typeof routes['auth.password.reset']
+    }
     admin: typeof routes['auth.admin']
   }
   profile: {
