@@ -11,6 +11,10 @@ import type { DateTime } from 'luxon';
 import { UserSchema } from '#database/schema';
 import { TOKEN_TYPES } from '#types/token';
 import { USER_ROLES, type UserRoleValue } from '../types/role.ts';
+import Cart from './cart.ts';
+import CustomerAddress from './customer_address.ts';
+import Favorite from './favorite.ts';
+import Order from './order.ts';
 import Token from './token.ts';
 
 export default class User extends compose(UserSchema, withAuthFinder(hash)) {
@@ -21,6 +25,18 @@ export default class User extends compose(UserSchema, withAuthFinder(hash)) {
 
   @hasMany(() => Token)
   declare tokens: HasMany<typeof Token>;
+
+  @hasMany(() => CustomerAddress)
+  declare addresses: HasMany<typeof CustomerAddress>;
+
+  @hasMany(() => Cart)
+  declare carts: HasMany<typeof Cart>;
+
+  @hasMany(() => Order)
+  declare orders: HasMany<typeof Order>;
+
+  @hasMany(() => Favorite)
+  declare favorites: HasMany<typeof Favorite>;
 
   /**
    * Narrows the generic tokens relation to password reset tokens only.

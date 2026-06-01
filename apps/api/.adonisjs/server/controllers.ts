@@ -10,6 +10,17 @@ export const controllers = {
     NewAccount: () => import('#controllers/auth/new-account-controller'),
     PasswordReset: () => import('#controllers/auth/password-reset-controller'),
   },
+  commerce: {
+    MenuItemOptionGroups: () => import('#controllers/commerce/menu_item_option_groups_controller'),
+    MenuItemOptions: () => import('#controllers/commerce/menu_item_options_controller'),
+    MenuItemVariants: () => import('#controllers/commerce/menu_item_variants_controller'),
+    MenuItems: () => import('#controllers/commerce/menu_items_controller'),
+    ProductCategories: () => import('#controllers/commerce/product_categories_controller'),
+    Restaurants: () => import('#controllers/commerce/restaurants_controller'),
+  },
+  favorites: {
+    Favorites: () => import('#controllers/favorites/favorites_controller'),
+  },
   user: {
     User: () => import('#controllers/user/user-controller'),
   },

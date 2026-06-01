@@ -32,6 +32,441 @@ export class AuthAccessTokenSchema extends BaseModel {
   declare updatedAt: DateTime | null
 }
 
+export class CartItemOptionSchema extends BaseModel {
+  static $columns = ['cartItemId', 'createdAt', 'id', 'menuItemOptionId', 'quantity', 'unitPriceCents', 'updatedAt'] as const
+  $columns = CartItemOptionSchema.$columns
+  @column()
+  declare cartItemId: number
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare menuItemOptionId: number
+  @column()
+  declare quantity: number
+  @column()
+  declare unitPriceCents: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class CartItemSchema extends BaseModel {
+  static $columns = ['cartId', 'createdAt', 'id', 'menuItemId', 'notes', 'quantity', 'totalPriceCents', 'unitPriceCents', 'updatedAt', 'variantId'] as const
+  $columns = CartItemSchema.$columns
+  @column()
+  declare cartId: number
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare menuItemId: number
+  @column()
+  declare notes: string | null
+  @column()
+  declare quantity: number
+  @column()
+  declare totalPriceCents: number
+  @column()
+  declare unitPriceCents: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare variantId: number | null
+}
+
+export class CartSchema extends BaseModel {
+  static $columns = ['createdAt', 'currency', 'expiresAt', 'id', 'restaurantId', 'sessionId', 'status', 'subtotalCents', 'totalCents', 'updatedAt', 'userId'] as const
+  $columns = CartSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare currency: string
+  @column.dateTime()
+  declare expiresAt: DateTime | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare restaurantId: number
+  @column()
+  declare sessionId: string | null
+  @column()
+  declare status: string
+  @column()
+  declare subtotalCents: number
+  @column()
+  declare totalCents: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: number | null
+}
+
+export class CustomerAddressSchema extends BaseModel {
+  static $columns = ['city', 'country', 'createdAt', 'deliveryInstructions', 'id', 'isDefault', 'label', 'latitude', 'line1', 'line2', 'longitude', 'phone', 'postalCode', 'recipientName', 'updatedAt', 'userId'] as const
+  $columns = CustomerAddressSchema.$columns
+  @column()
+  declare city: string
+  @column()
+  declare country: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare deliveryInstructions: string | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare isDefault: boolean
+  @column()
+  declare label: string | null
+  @column()
+  declare latitude: number | null
+  @column({ columnName: 'line1' })
+  declare line1: string
+  @column({ columnName: 'line2' })
+  declare line2: string | null
+  @column()
+  declare longitude: number | null
+  @column()
+  declare phone: string
+  @column()
+  declare postalCode: string
+  @column()
+  declare recipientName: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: number
+}
+
+export class FavoriteSchema extends BaseModel {
+  static $columns = ['createdAt', 'favoritableId', 'favoritableType', 'id', 'updatedAt', 'userId'] as const
+  $columns = FavoriteSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare favoritableId: number
+  @column()
+  declare favoritableType: string
+  @column({ isPrimary: true })
+  declare id: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: number
+}
+
+export class MenuItemOptionGroupSchema extends BaseModel {
+  static $columns = ['createdAt', 'displayOrder', 'id', 'isRequired', 'maxSelected', 'menuItemId', 'minSelected', 'name', 'updatedAt'] as const
+  $columns = MenuItemOptionGroupSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare displayOrder: number
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare isRequired: boolean
+  @column()
+  declare maxSelected: number
+  @column()
+  declare menuItemId: number
+  @column()
+  declare minSelected: number
+  @column()
+  declare name: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class MenuItemOptionSchema extends BaseModel {
+  static $columns = ['calories', 'createdAt', 'displayOrder', 'id', 'isAvailable', 'name', 'optionGroupId', 'priceCents', 'updatedAt'] as const
+  $columns = MenuItemOptionSchema.$columns
+  @column()
+  declare calories: number | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare displayOrder: number
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare isAvailable: boolean
+  @column()
+  declare name: string
+  @column()
+  declare optionGroupId: number
+  @column()
+  declare priceCents: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class MenuItemVariantSchema extends BaseModel {
+  static $columns = ['calories', 'createdAt', 'displayOrder', 'id', 'isAvailable', 'isDefault', 'menuItemId', 'name', 'priceCents', 'sku', 'updatedAt'] as const
+  $columns = MenuItemVariantSchema.$columns
+  @column()
+  declare calories: number | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare displayOrder: number
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare isAvailable: boolean
+  @column()
+  declare isDefault: boolean
+  @column()
+  declare menuItemId: number
+  @column()
+  declare name: string
+  @column()
+  declare priceCents: number
+  @column()
+  declare sku: string | null
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class MenuItemSchema extends BaseModel {
+  static $columns = ['basePriceCents', 'calories', 'categoryId', 'createdAt', 'description', 'displayOrder', 'id', 'imageUrl', 'isAvailable', 'isFeatured', 'name', 'restaurantId', 'slug', 'taxRateBps', 'type', 'updatedAt'] as const
+  $columns = MenuItemSchema.$columns
+  @column()
+  declare basePriceCents: number
+  @column()
+  declare calories: number | null
+  @column()
+  declare categoryId: number | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare description: string | null
+  @column()
+  declare displayOrder: number
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare imageUrl: string | null
+  @column()
+  declare isAvailable: boolean
+  @column()
+  declare isFeatured: boolean
+  @column()
+  declare name: string
+  @column()
+  declare restaurantId: number
+  @column()
+  declare slug: string
+  @column()
+  declare taxRateBps: number
+  @column()
+  declare type: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class OrderItemOptionSchema extends BaseModel {
+  static $columns = ['createdAt', 'id', 'menuItemOptionId', 'name', 'orderItemId', 'quantity', 'unitPriceCents', 'updatedAt'] as const
+  $columns = OrderItemOptionSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare menuItemOptionId: number | null
+  @column()
+  declare name: string
+  @column()
+  declare orderItemId: number
+  @column()
+  declare quantity: number
+  @column()
+  declare unitPriceCents: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class OrderItemSchema extends BaseModel {
+  static $columns = ['createdAt', 'id', 'menuItemId', 'name', 'notes', 'orderId', 'quantity', 'totalPriceCents', 'unitPriceCents', 'updatedAt', 'variantId', 'variantName'] as const
+  $columns = OrderItemSchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare menuItemId: number | null
+  @column()
+  declare name: string
+  @column()
+  declare notes: string | null
+  @column()
+  declare orderId: number
+  @column()
+  declare quantity: number
+  @column()
+  declare totalPriceCents: number
+  @column()
+  declare unitPriceCents: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare variantId: number | null
+  @column()
+  declare variantName: string | null
+}
+
+export class OrderSchema extends BaseModel {
+  static $columns = ['acceptedAt', 'cancelledAt', 'createdAt', 'currency', 'customerAddressId', 'customerEmail', 'customerName', 'customerPhone', 'deliveredAt', 'deliveryFeeCents', 'discountCents', 'fulfillmentMethod', 'id', 'notes', 'orderNumber', 'placedAt', 'readyAt', 'restaurantId', 'scheduledFor', 'status', 'subtotalCents', 'taxCents', 'totalCents', 'updatedAt', 'userId'] as const
+  $columns = OrderSchema.$columns
+  @column.dateTime()
+  declare acceptedAt: DateTime | null
+  @column.dateTime()
+  declare cancelledAt: DateTime | null
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare currency: string
+  @column()
+  declare customerAddressId: number | null
+  @column()
+  declare customerEmail: string
+  @column()
+  declare customerName: string
+  @column()
+  declare customerPhone: string
+  @column.dateTime()
+  declare deliveredAt: DateTime | null
+  @column()
+  declare deliveryFeeCents: number
+  @column()
+  declare discountCents: number
+  @column()
+  declare fulfillmentMethod: string
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare notes: string | null
+  @column()
+  declare orderNumber: string
+  @column.dateTime()
+  declare placedAt: DateTime | null
+  @column.dateTime()
+  declare readyAt: DateTime | null
+  @column()
+  declare restaurantId: number
+  @column.dateTime()
+  declare scheduledFor: DateTime | null
+  @column()
+  declare status: string
+  @column()
+  declare subtotalCents: number
+  @column()
+  declare taxCents: number
+  @column()
+  declare totalCents: number
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+  @column()
+  declare userId: number | null
+}
+
+export class PaymentSchema extends BaseModel {
+  static $columns = ['amountCents', 'createdAt', 'currency', 'id', 'orderId', 'paidAt', 'provider', 'providerReference', 'refundedAt', 'status', 'updatedAt'] as const
+  $columns = PaymentSchema.$columns
+  @column()
+  declare amountCents: number
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare currency: string
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare orderId: number
+  @column.dateTime()
+  declare paidAt: DateTime | null
+  @column()
+  declare provider: string
+  @column()
+  declare providerReference: string | null
+  @column.dateTime()
+  declare refundedAt: DateTime | null
+  @column()
+  declare status: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class ProductCategorySchema extends BaseModel {
+  static $columns = ['createdAt', 'description', 'displayOrder', 'id', 'isActive', 'name', 'restaurantId', 'slug', 'updatedAt'] as const
+  $columns = ProductCategorySchema.$columns
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare description: string | null
+  @column()
+  declare displayOrder: number
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare isActive: boolean
+  @column()
+  declare name: string
+  @column()
+  declare restaurantId: number
+  @column()
+  declare slug: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
+export class RestaurantSchema extends BaseModel {
+  static $columns = ['addressLine1', 'addressLine2', 'city', 'country', 'createdAt', 'deliveryRadiusMeters', 'description', 'email', 'id', 'imageUrl', 'latitude', 'longitude', 'minimumOrderCents', 'name', 'openingHours', 'phone', 'postalCode', 'slug', 'status', 'updatedAt'] as const
+  $columns = RestaurantSchema.$columns
+  @column({ columnName: 'address_line1' })
+  declare addressLine1: string
+  @column({ columnName: 'address_line2' })
+  declare addressLine2: string | null
+  @column()
+  declare city: string
+  @column()
+  declare country: string
+  @column.dateTime({ autoCreate: true })
+  declare createdAt: DateTime
+  @column()
+  declare deliveryRadiusMeters: number | null
+  @column()
+  declare description: string | null
+  @column()
+  declare email: string | null
+  @column({ isPrimary: true })
+  declare id: number
+  @column()
+  declare imageUrl: string | null
+  @column()
+  declare latitude: number | null
+  @column()
+  declare longitude: number | null
+  @column()
+  declare minimumOrderCents: number
+  @column()
+  declare name: string
+  @column()
+  declare openingHours: string | null
+  @column()
+  declare phone: string | null
+  @column()
+  declare postalCode: string
+  @column()
+  declare slug: string
+  @column()
+  declare status: string
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  declare updatedAt: DateTime | null
+}
+
 export class TokenSchema extends BaseModel {
   static $columns = ['createdAt', 'expiresAt', 'id', 'token', 'type', 'updatedAt', 'userId'] as const
   $columns = TokenSchema.$columns
